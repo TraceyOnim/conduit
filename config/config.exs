@@ -47,6 +47,21 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# config :commanded,
+# event_store_adapter: Commanded.EventStore.Adapters.EventStore
+
+config :conduit,Conduit.ConduitApplication,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.EventStore,
+    event_store: Conduit.EventStore
+  ],
+  pubsub: :local,
+  registry: :local
+
+config :conduit, Conduit.EventStore, serializer: Commanded.Serialization.JsonSerializer
+
+config :conduit, event_stores: [Conduit.EventStore]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

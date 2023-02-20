@@ -14,6 +14,13 @@ config :conduit, ConduitWeb.Endpoint, cache_static_manifest: "priv/static/cache_
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :conduit, Conduit.EventStore,
+serializer: EventStore.JsonSerializer,
+username: "postgres",
+password: "postgres",
+database: "eventstore",
+hostname: "localhost"
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

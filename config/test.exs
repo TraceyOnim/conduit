@@ -13,6 +13,15 @@ config :conduit, Conduit.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
+
+# Configure the event store database
+config :conduit, Conduit.EventStore,
+  serializer: EventStore.JsonSerializer,
+  username: "postgres",
+  password: "postgres",
+  database: "eventstore",
+  hostname: "localhost"
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :conduit, ConduitWeb.Endpoint,
